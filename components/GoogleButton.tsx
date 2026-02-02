@@ -1,5 +1,5 @@
 import React from "react"
-import { Pressable, Text, View } from "react-native"
+import { Pressable, View } from "react-native"
 import { AntDesign } from "@expo/vector-icons"
 import { MotiView, MotiText } from "moti"
 
@@ -18,62 +18,73 @@ export const GoogleButton = ({
 
   return (
     <MotiView
-      from={{ scale: 0.95, opacity: 0 }}
+      from={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ type: "spring", damping: 15 }}
+      transition={{ type: "timing", duration: 800 }}
       className="w-full"
     >
-      <Pressable onPress={onPress} className="active:scale-95">
+      <Pressable onPress={onPress}>
         {({ pressed }) => (
           <MotiView
             animate={{
-              scale: pressed ? 0.96 : [1, 1.02, 1],
-              shadowOpacity: pressed ? 0.1 : 0.2
+              scale: pressed ? 0.95 : [1, 1.03, 1],
+              backgroundColor: isDark
+                ? pressed
+                  ? "#0f172a"
+                  : "#1e293b"
+                : pressed
+                  ? "#f8fafc"
+                  : "#ffffff"
             }}
             transition={{
               scale: pressed
                 ? { type: "timing", duration: 100 }
-                : { loop: true, duration: 3000, type: "timing" }
+                : { loop: true, duration: 4000 }
             }}
-            className={`w-full flex-row items-center justify-center py-5 rounded-[35px] ${
+            className={`w-full h-20 flex-row items-center justify-center rounded-[40px] border-2 ${
               isDark
-                ? "bg-slate-900 shadow-2xl shadow-slate-900/50"
-                : "bg-white border border-slate-100 shadow-xl shadow-slate-200"
+                ? "border-slate-800 shadow-2xl shadow-slate-900"
+                : "border-slate-50 shadow-xl shadow-slate-200"
             }`}
           >
-            <MotiView
-              animate={{
-                translateX: pressed ? 4 : 0,
-                rotate: pressed ? "10deg" : "0deg"
-              }}
-              className="absolute left-8"
-            >
+            <View className="absolute left-8 flex-row items-center gap-x-1">
+              <MotiView
+                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ loop: true, duration: 2000 }}
+                className={`w-2 h-2 rounded-full ${isDark ? "bg-blue-500" : "bg-blue-400"}`}
+              />
               <AntDesign
                 name="google"
                 size={22}
-                color={isDark ? "white" : "#4285F4"}
+                color={isDark ? "white" : "#0f172a"}
               />
-            </MotiView>
+            </View>
+
             <MotiText
-              animate={{ opacity: pressed ? 0.7 : 1 }}
-              className={`text-lg font-black tracking-tighter ${
+              style={{ fontFamily: "System" }}
+              className={`text-xl font-black tracking-tighter ${
                 isDark ? "text-white" : "text-slate-900"
               }`}
             >
               {label}
             </MotiText>
-            <MotiView
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.3, 0.8, 0.3]
-              }}
-              transition={{
-                loop: true,
-                duration: 2000,
-                type: "timing"
-              }}
-              className="absolute right-8 w-2 h-2 rounded-full bg-indigo-500"
-            />
+            <View className="absolute right-8 flex-row gap-x-1.5">
+              {[1, 2].map((i) => (
+                <MotiView
+                  key={i}
+                  animate={{
+                    translateY: [0, -4, 0],
+                    opacity: [0.3, 0.8, 0.3]
+                  }}
+                  transition={{
+                    loop: true,
+                    duration: 1500,
+                    delay: i * 200
+                  }}
+                  className={`w-1.5 h-1.5 rounded-full ${isDark ? "bg-indigo-400" : "bg-slate-300"}`}
+                />
+              ))}
+            </View>
           </MotiView>
         )}
       </Pressable>
