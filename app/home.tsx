@@ -1,66 +1,58 @@
-import { View, Text, StyleSheet, Button, Alert } from "react-native"
-import { useAuth } from "@/hooks/useAuth"
-import { logoutUser } from "@/services/authService"
+import { View, Alert, StatusBar, ScrollView } from "react-native"
 import { useRouter } from "expo-router"
+import { useAuth } from "@/hooks/useAuth"
+import { useLoader } from "@/hooks/useLoader"
+import { logoutUser } from "@/services/authService"
+import { MovingBalls } from "@/components/common/MovingBalls"
+import { GoogleButton } from "@/components/common/GoogleButton"
+import { HomeHeader } from "@/components/home/HomeHeader"
+import { IdentityCard } from "@/components/home/IdentityCard"
+import { StatusGrid } from "@/components/home/StatusGrid"
+import { MotiView } from "moti"
 
-export default function Home() {
+export default function HomeScreen() {
   const { user } = useAuth()
   const router = useRouter()
+  const { showLoader, hideLoader } = useLoader()
 
   const handleLogout = async () => {
     try {
+      showLoader()
       await logoutUser()
       router.replace("/login")
-    } catch (error: any) {
-      Alert.alert("Logout Error", error.message)
+    } catch (e) {
+      Alert.alert("System", "Termination failed.")
+    } finally {
+      hideLoader()
     }
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Home Screen</Text>
-
-      <View style={styles.profileBox}>
-        <Text style={styles.text}>Logged in as:</Text>
-        <Text style={styles.emailText}>{user?.email}</Text>
+    <View className="flex-1 bg-white">
+      <StatusBar barStyle="dark-content" />
+      <View className="absolute inset-0 opacity-20">
+        <MovingBalls intensity={1.2} />
       </View>
-
-      <Button title="Logout" onPress={handleLogout} color="#ff4444" />
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1, paddingBottom: 100 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <HomeHeader />
+        <IdentityCard user={user} />
+        <StatusGrid />
+        <MotiView
+          from={{ opacity: 0, translateY: 20 }}
+          animate={{ opacity: 1, translateY: 0 }}
+          transition={{ delay: 700 }}
+          className="px-6 mt-16"
+        >
+          <GoogleButton
+            label="SIGN OUT"
+            onPress={handleLogout}
+            variant="outline"
+          />
+        </MotiView>
+      </ScrollView>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f5f5f5"
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20
-  },
-  profileBox: {
-    backgroundColor: "#fff",
-    padding: 20,
-    borderRadius: 10,
-    alignItems: "center",
-    marginBottom: 30,
-    elevation: 3,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1
-  },
-  text: {
-    fontSize: 14,
-    color: "#666"
-  },
-  emailText: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#333",
-    marginTop: 5
-  }
-})

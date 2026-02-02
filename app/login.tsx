@@ -1,62 +1,35 @@
 import React from "react"
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native"
-import { loginWithGoogle } from "@/services/authService"
+import { View, Alert, StatusBar } from "react-native"
 import { useRouter } from "expo-router"
+import { loginWithGoogle } from "@/services/authService"
+import { useLoader } from "@/hooks/useLoader"
+import { LoginBackground } from "@/components/auth/LoginBackground"
+import { LoginCard } from "@/components/auth/LoginCard"
 
 export default function LoginScreen() {
   const router = useRouter()
+  const { showLoader, hideLoader, isLoading } = useLoader()
 
   const handleLogin = async () => {
+    if (isLoading) return
     try {
-      const result = await loginWithGoogle()
-
-      if (result) {
+      showLoader()
+      const success = await loginWithGoogle()
+      if (success) {
         router.replace("/home")
       }
     } catch (error: any) {
-      console.error("Login Failed: ", error)
-      Alert.alert("Login Error", error.message || "Something went wrong")
+      Alert.alert("Authentication", "Google sync interrupted.")
+    } finally {
+      hideLoader()
     }
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome</Text>
-
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Sign in with Google</Text>
-      </TouchableOpacity>
+    <View className="flex-1 bg-slate-50 items-center justify-center px-8">
+      <StatusBar barStyle="dark-content" />
+      <LoginBackground />
+      <LoginCard onLoginPress={handleLogin} />
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff"
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 40
-  },
-  button: {
-    backgroundColor: "#fff",
-    paddingVertical: 12,
-    paddingHorizontal: 25,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    elevation: 2,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#444"
-  }
-})
