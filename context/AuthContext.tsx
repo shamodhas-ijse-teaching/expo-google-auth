@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     showLoader()
     const unsucribe = onAuthStateChanged(auth, (usr) => {
       setUser(usr)
-      hideLoader()
+      // hideLoader()
     })
 
     return () => unsucribe()

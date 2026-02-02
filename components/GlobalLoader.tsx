@@ -60,7 +60,7 @@ export const GlobalLoader = () => {
   ]
 
   return (
-    <View className="absolute inset-0 z-[1000] items-center justify-center bg-white/98">
+    <View className="absolute inset-0 z-[1000] items-center justify-center bg-slate-900">
       <MotiView
         from={{ scale: 0.9, opacity: 0.6 }}
         animate={{ scale: 1.1, opacity: 1 }}
@@ -72,7 +72,7 @@ export const GlobalLoader = () => {
         }}
         className="absolute z-20"
       >
-        <AntDesign name="google" size={56} color="#0f172a" />
+        <AntDesign name="google" size={56} color="#ffffff" />
       </MotiView>
       <View className="w-80 h-80 items-center justify-center">
         {particles.map((p, i) => (

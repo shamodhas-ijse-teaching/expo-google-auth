@@ -15,32 +15,39 @@ export const LoginCard = ({ title, subtitle, onLoginPress }: Props) => {
     <MotiView
       from={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ type: "timing", duration: 1000 }}
-      className="w-full bg-white/95 p-10 rounded-[60px] shadow-2xl shadow-slate-300 border border-slate-50 items-center overflow-hidden"
+      transition={{ type: "timing", duration: 1200 }}
+      className="w-full items-center justify-center py-10"
     >
-      <View className="absolute inset-0 opacity-40">
-        <MovingBalls intensity={1.5} />
+      <View className="absolute inset-0 items-center justify-center">
+        <MovingBalls intensity={2.5} />
       </View>
-      <View className="items-center justify-center mb-6 mt-4">
-        <View className="bg-white p-6 rounded-full shadow-xl border border-slate-50 z-10">
-          <AntDesign name="google" size={48} color="#0f172a" />
+      <MotiView
+        animate={{ translateY: [0, -20, 0] }}
+        transition={{ loop: true, duration: 1000, type: "timing" }}
+        className="mb-10 z-10"
+      >
+        <View className="bg-slate-900 p-8 rounded-[40px] rotate-12 shadow-2xl shadow-indigo-500/20">
+          <AntDesign name="google" size={42} color="white" />
         </View>
-      </View>
-      <View className="items-center mb-12">
-        <Text className="text-4xl font-black text-slate-900 tracking-tighter text-center">
+      </MotiView>
+      <View className="items-center mb-16 px-6">
+        <Text className="text-5xl font-black text-slate-900 tracking-tighter text-center leading-[50px]">
           {title}
         </Text>
-        <Text className="text-slate-400 text-center mt-2 text-base font-medium px-4">
+        <View className="h-1 w-12 bg-indigo-600 rounded-full my-6 opacity-30" />
+        <Text className="text-slate-500 text-center text-lg font-medium tracking-tight px-8">
           {subtitle}
         </Text>
       </View>
-      <View className="w-full">
-        <GoogleButton label="Continue with Google" onPress={onLoginPress} />
+      <View className="w-full px-6">
+        <GoogleButton label="Continue" onPress={onLoginPress} variant="dark" />
       </View>
-      <View className="mt-10 flex-row gap-x-2">
-        <View className="w-2 h-2 rounded-full bg-slate-900" />
-        <View className="w-2 h-2 rounded-full bg-slate-200" />
-        <View className="w-2 h-2 rounded-full bg-slate-100" />
+      <View className="mt-16 h-1 w-32 bg-slate-100 rounded-full overflow-hidden">
+        <MotiView
+          animate={{ translateX: [-100, 100] }}
+          transition={{ loop: true, duration: 2000, type: "timing" }}
+          className="h-full w-12 bg-slate-900 rounded-full"
+        />
       </View>
     </MotiView>
   )
