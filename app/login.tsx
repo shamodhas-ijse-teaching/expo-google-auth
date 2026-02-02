@@ -1,13 +1,29 @@
 import React from "react"
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native"
 import { loginWithGoogle } from "@/services/authService"
+import { useRouter } from "expo-router"
 
 export default function LoginScreen() {
+  const router = useRouter()
+
+  const handleLogin = async () => {
+    try {
+      const result = await loginWithGoogle()
+
+      if (result) {
+        router.replace("/home")
+      }
+    } catch (error: any) {
+      console.error("Login Failed: ", error)
+      Alert.alert("Login Error", error.message || "Something went wrong")
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome</Text>
 
-      <TouchableOpacity style={styles.button} onPress={loginWithGoogle}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Sign in with Google</Text>
       </TouchableOpacity>
     </View>

@@ -5,6 +5,7 @@ import {
   signOut
 } from "firebase/auth"
 import { auth } from "./firebase"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 GoogleSignin.configure({
   webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
@@ -32,6 +33,7 @@ export const logoutUser = async () => {
     await signOut(auth)
     await GoogleSignin.revokeAccess()
     await GoogleSignin.signOut()
+    await AsyncStorage.clear()
   } catch (error) {
     console.error(error)
     throw error

@@ -1,10 +1,13 @@
 import { AuthProvider } from "@/context/AuthContext"
-import { Stack } from "expo-router"
+import { LoaderProvider } from "@/context/LoaderContext"
+import { Slot } from "expo-router"
 
 export default function RootLayout() {
   return (
-    <AuthProvider>
-      <Stack screenOptions={{ headerShown: false }} />
-    </AuthProvider>
+    <LoaderProvider>
+      <AuthProvider>
+        <Slot />
+      </AuthProvider>
+    </LoaderProvider>
   )
 }

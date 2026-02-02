@@ -1,26 +1,25 @@
-import { View, ActivityIndicator, StyleSheet } from "react-native"
+import { View, Text, ActivityIndicator } from "react-native"
+import React from "react"
+import "../global.css"
 import { Redirect } from "expo-router"
 import { useAuth } from "@/hooks/useAuth"
 
-export default function Index() {
+const Index = () => {
   const { user, loading } = useAuth()
-  console.log(user)
 
   if (loading) {
     return (
-      <View style={styles.center}>
-        <ActivityIndicator size="large" color="#0000ff" />
+      <View className="flex-1 justify-center items-center bg-gray-50">
+        <ActivityIndicator size="large" color="#4ade80" />
       </View>
     )
   }
 
-  if (!user) {
+  if (user) {
+    return <Redirect href="/home" />
+  } else {
     return <Redirect href="/login" />
   }
-
-  return <Redirect href="/home" />
 }
 
-const styles = StyleSheet.create({
-  center: { flex: 1, justifyContent: "center", alignItems: "center" }
-})
+export default Index
