@@ -1,74 +1,104 @@
-# Expo Firebase Google Authentication
+<h1>Expo Firebase Google Authentication</h1>
 
-<p>This project demonstrates <strong>Google Authentication</strong> in an <strong>Expo React Native app</strong> using <strong>Firebase</strong>.</p>
+<p>
+This project demonstrates <strong>Google Authentication</strong> in an
+<strong>Expo React Native app</strong> using <strong>Firebase</strong>.
+</p>
 
-<hr>
+<hr />
 
 <h2>Phase 1: Firebase Setup</h2>
 
 <h3>1️⃣ Create Firebase Project</h3>
 <ul>
-<li>Go to <a href="https://console.firebase.google.com">Firebase Console</a></li>
-<li>Click <strong>Add project</strong> → follow prompts</li>
+  <li>Go to <a href="https://console.firebase.google.com">Firebase Console</a></li>
+  <li>Click <strong>Add project</strong> → follow the prompts</li>
 </ul>
+
+<hr />
 
 <h3>2️⃣ Add Web App (Required for Google Auth)</h3>
 <ul>
-<li>Project Settings → Your Apps → Add app → Web (&#60;/&#62;)</li>
-<li>Name: <code>AuthWeb</code></li>
-<li>Register app → skip hosting</li>
-<li>Copy the <strong>Web Client ID</strong> (needed for Expo)</li>
+  <li>Project Settings → Your Apps → Add app</li>
+  <li>Select <strong>Web (&lt;/&gt;)</strong></li>
+  <li>App name: <code>AuthWeb</code></li>
+  <li>Register app → Skip hosting</li>
+  <li>Copy the <strong>Web Client ID</strong> (used in Expo)</li>
 </ul>
+
+<hr />
 
 <h3>3️⃣ Add Android App</h3>
 
-<p>This step connects your Android app to Firebase and sets up Google Sign-In.</p>
+<p>This step links your native Android app with Firebase.</p>
 
 <ol>
-<li><strong>Go to Firebase Console</strong><br>
-Project Settings → Your Apps → Add App → Android
-</li>
+  <li>
+    <strong>Register Android App</strong><br />
+    Firebase Console → Project Settings → Your Apps → Add app → Android
+  </li>
 
-<li><strong>Package Name</strong></li>
-<pre><code>
-com.shamodha.authapp
+  <li>
+    <strong>Android Package Name</strong>
+    <pre><code>com.shamodha.authapp</code></pre>
+    <p>⚠️ Must match the package name in <code>app.json</code></p>
+  </li>
+
+  <li>
+    <strong>Download google-services.json</strong>
+    <ul>
+      <li>After registering the Android app</li>
+      <li>Click <strong>Download google-services.json</strong></li>
+    </ul>
+
+<pre><code>auth-app/
+ ├── google-services.json
+ ├── app.json
+ ├── package.json
 </code></pre>
-<p>⚠️ Must match the package name in your <code>app.json</code></p>
 
-<li><strong>SHA-1 Fingerprint</strong></li>
-<p>Generate SHA-1 in your terminal:</p>
-<pre><code>
-cd android
+    <p>❗ Do NOT rename this file</p>
+  </li>
+
+  <li>
+    <strong>Generate SHA-1 Fingerprint</strong>
+
+<pre><code>cd android
 ./gradlew signingReport
 </code></pre>
-<p>Look for the SHA-1 under <code>Variant: debug</code> and copy it.</p>
 
-<li><strong>Add SHA-1 to Firebase</strong></li>
-<p>Paste the SHA-1 into your Android app settings in Firebase → Click <strong>Save</strong></p>
+    <ul>
+      <li>Copy SHA-1 under <code>Variant: debug</code></li>
+      <li>Firebase Console → Android App settings → Add SHA-1</li>
+      <li>Click <strong>Save</strong></li>
+    </ul>
+  </li>
 </ol>
 
 <p><strong>Why SHA-1 is important:</strong></p>
 <ul>
-<li>Google Sign-In requires SHA-1 to authenticate your app.</li>
-<li>Missing SHA-1 causes silent login failures.</li>
-<li>Update SHA-1 if signing keys change and re-save Google provider.</li>
+  <li>Required for Google Sign-In on Android</li>
+  <li>Missing SHA-1 causes silent login failures</li>
+  <li>Re-save Google provider after adding SHA-1</li>
 </ul>
+
+<hr />
 
 <h3>4️⃣ Enable Google Authentication</h3>
 <ul>
-<li>Firebase Console → Authentication → Sign-in method</li>
-<li>Enable Google</li>
-<li>After adding SHA-1 → click <strong>Save</strong> again</li>
+  <li>Firebase Console → Authentication</li>
+  <li>Sign-in method → Enable <strong>Google</strong></li>
+  <li>After adding SHA-1 → click <strong>Save</strong> again</li>
 </ul>
 
-<p><strong>⚠️ Important:</strong> <strong>Do NOT use Google Cloud Platform (GCP) manually</strong>. All setup is done in Firebase Console only.</p>
-<p><strong>⚠️ Warning:</strong> Google Sign-In <strong>will NOT work in Expo Go</strong>. You must build a development client.</p>
+<p><strong>⚠️ Important:</strong> Do <strong>NOT</strong> configure Google Cloud Platform manually.</p>
+<p><strong>⚠️ Warning:</strong> Google Sign-In does <strong>NOT</strong> work in Expo Go.</p>
 
-<hr>
+<hr />
 
-<h2>Phase 2: Environment Variables (.env)</h2>
+<h2>Phase 2: Environment Variables</h2>
 
-<p>Create a <code>.env</code> file in the project root with the following content:</p>
+<p>Create a <code>.env</code> file in the project root:</p>
 
 <pre><code>
 EXPO_PUBLIC_FIREBASE_API_KEY=your_api_key
@@ -80,46 +110,59 @@ EXPO_PUBLIC_FIREBASE_APP_ID=your_app_id
 EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID=your_web_client_id
 </code></pre>
 
-<p><strong>Important:</strong> Expo only exposes environment variables that start with <code>EXPO_PUBLIC_</code>.</p>
+<p>✅ Only variables prefixed with <code>EXPO_PUBLIC_</code> are exposed in Expo.</p>
 
-<hr>
+<hr />
 
-<h2>Phase 3: Build & Run</h2>
+<h2>Phase 3: Expo Configuration</h2>
 
-<p>⚠️ <strong>Google Sign-In requires a development client, NOT Expo Go.</strong></p>
+<h3>Update app.json</h3>
 
-<h3>1️⃣ Generate Native Folders</h3>
 <pre><code>
-npx expo prebuild
+{
+  "expo": {
+    "android": {
+      "package": "com.shamodha.authapp",
+      "googleServicesFile": "./google-services.json"
+    }
+  }
+}
 </code></pre>
+
+<hr />
+
+<h2>Phase 4: Build & Run</h2>
+
+<p><strong>⚠️ Google Sign-In requires a development build, NOT Expo Go.</strong></p>
+
+<h3>1️⃣ Generate Native Code</h3>
+<pre><code>npx expo prebuild</code></pre>
 
 <h3>2️⃣ Run on Android</h3>
-<pre><code>
-npx expo run:android
-</code></pre>
-<p>Make sure your Android device has <strong>USB debugging ON</strong>.</p>
+<pre><code>npx expo run:android</code></pre>
+
+<p>✔ USB debugging must be enabled on your device.</p>
 
 <h3>3️⃣ Run on iOS (Mac only)</h3>
-<pre><code>
-npx expo run:ios
-</code></pre>
+<pre><code>npx expo run:ios</code></pre>
 
-<hr>
+<hr />
 
 <h3>Notes</h3>
 <ul>
-<li>The Web Client ID from the Firebase Web App is required for Google Sign-In in Expo.</li>
-<li>After adding or changing SHA-1, always re-save the Google provider in Firebase.</li>
-<li>Ensure package name in <code>app.json</code> matches Firebase Android app.</li>
-<li><strong>Do NOT use GCP manually</strong> — only use Firebase Console for this setup.</li>
-<li><strong>Do NOT use Expo Go</strong> — you must build a dev client for Google Sign-In to work.</li>
+  <li>Web Client ID is mandatory for Google Sign-In</li>
+  <li>Always re-save Google provider after SHA-1 changes</li>
+  <li><code>google-services.json</code> is required for Android</li>
+  <li>Package name must match Firebase config</li>
+  <li>❌ Do NOT use GCP manually</li>
+  <li>❌ Do NOT use Expo Go</li>
 </ul>
 
-<hr>
+<hr />
 
 <h3>References</h3>
 <ul>
-<li><a href="https://console.firebase.google.com">Firebase Console</a></li>
-<li><a href="https://docs.expo.dev/versions/latest/sdk/auth-session/">Expo Auth Session Docs</a></li>
-<li><a href="https://firebase.google.com/docs/auth">Firebase Auth Docs</a></li>
+  <li><a href="https://console.firebase.google.com">Firebase Console</a></li>
+  <li><a href="https://docs.expo.dev/versions/latest/sdk/auth-session/">Expo Auth Session Docs</a></li>
+  <li><a href="https://firebase.google.com/docs/auth">Firebase Auth Docs</a></li>
 </ul>
