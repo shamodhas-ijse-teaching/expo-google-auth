@@ -2,8 +2,8 @@ import { AuthProvider } from "@/context/AuthContext"
 import { LoaderProvider } from "@/context/LoaderContext"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { Slot } from "expo-router"
-import { GlobalLoader } from "@/components/GlobalLoader"
-import { DevSignature } from "@/components/DevSignature"
+import { GlobalLoader } from "@/components/common/GlobalLoader"
+import { DevSignature } from "@/components/layout/DevSignature"
 import "../global.css"
 
 export default function RootLayout() {
