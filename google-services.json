@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "631208415728",
+    "project_id": "auth-app-d877d",
+    "storage_bucket": "auth-app-d877d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631208415728:android:e674842587a22cded4cd35",
+        "android_client_info": {
+          "package_name": "com.shamodha.authapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "631208415728-b18hj6pfln4b05m7a8pmtcihe4nd22dd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shamodha.authapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "631208415728-aumdg0n9fsfnkakc0n1gtr5b0hg3tk8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhKyRzL_uf3PlVnfKYLTF52ezQVaaqVSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "631208415728-aumdg0n9fsfnkakc0n1gtr5b0hg3tk8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
