@@ -19,7 +19,7 @@ export default function HomeScreen() {
     try {
       showLoader()
       await logoutUser()
-      setTimeout(() => router.replace("/login"), 800)
+      router.replace("/login")
     } catch (e) {
       Alert.alert("System", "Termination failed.")
     } finally {

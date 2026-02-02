@@ -16,7 +16,7 @@ export default function LoginScreen() {
       showLoader()
       const success = await loginWithGoogle()
       if (success) {
-        setTimeout(() => router.replace("/home"), 800)
+        router.replace("/home")
       }
     } catch (error: any) {
       Alert.alert("Authentication", "Google sync interrupted.")
