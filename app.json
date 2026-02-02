@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "auth-app",
+    "name": "Google Auth",
     "slug": "auth-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,45 +9,34 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.shamodha.authapp"
     },
     "android": {
+      "package": "com.shamodha.authapp",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#1E293B"
       },
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false,
-      "package": "com.shamodha.authapp"
-    },
-    "web": {
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "edgeToEdgeEnabled": true
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
+          "image": "./assets/images/icon.png",
+          "imageWidth": 180,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
           "dark": {
-            "backgroundColor": "#000000"
+            "backgroundColor": "#0F172A"
           }
         }
       ],
       "@react-native-google-signin/google-signin"
     ],
-    "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": false
-    },
     "extra": {
-      "router": {},
       "eas": {
         "projectId": "df84fb83-1f9c-4e0b-9c35-971fc9557154"
       }
