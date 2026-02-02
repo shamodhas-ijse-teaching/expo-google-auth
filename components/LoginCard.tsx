@@ -40,7 +40,7 @@ export const LoginCard = ({ title, subtitle, onLoginPress }: Props) => {
         </Text>
       </View>
       <View className="w-full px-6">
-        <GoogleButton label="Continue" onPress={onLoginPress} variant="dark" />
+        <GoogleButton label="Sign in" onPress={onLoginPress} variant="dark" />
       </View>
       <View className="mt-16 h-1 w-32 bg-slate-100 rounded-full overflow-hidden">
         <MotiView
