@@ -2,17 +2,22 @@ import { View, Text, StyleSheet, Button, Alert } from "react-native"
 import { useAuth } from "@/hooks/useAuth"
 import { logoutUser } from "@/services/authService"
 import { useRouter } from "expo-router"
+import { useLoader } from "@/hooks/useLoader"
 
 export default function Home() {
   const { user } = useAuth()
   const router = useRouter()
+  const { showLoader, hideLoader, isLoading } = useLoader()
 
   const handleLogout = async () => {
     try {
+      showLoader()
       await logoutUser()
       router.replace("/login")
     } catch (error: any) {
       Alert.alert("Logout Error", error.message)
+    } finally {
+      hideLoader()
     }
   }
 

@@ -40,12 +40,11 @@
           }
         }
       ],
-      "@react-native-google-signin/google-signin",
-      "react-native-reanimated/plugin"
+      "@react-native-google-signin/google-signin"
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true
+      "reactCompiler": false
     },
     "extra": {
       "router": {},

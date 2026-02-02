@@ -1,17 +1,15 @@
 import { AuthProvider } from "@/context/AuthContext"
 import { LoaderProvider } from "@/context/LoaderContext"
 import { Slot } from "expo-router"
+import { GlobalLoader } from "@/components/GlobalLoader"
 import "../global.css"
-import { Text } from "react-native"
 
 export default function RootLayout() {
   return (
     <LoaderProvider>
       <AuthProvider>
-        <Text className="text-xl font-bold text-blue-500">
-          Welcome to Nativewind!
-        </Text>
         <Slot />
+        <GlobalLoader />
       </AuthProvider>
     </LoaderProvider>
   )
