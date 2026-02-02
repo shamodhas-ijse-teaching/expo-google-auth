@@ -3,18 +3,21 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": ["./*"],
+      "@/*": [
+        "./*"
+      ],
       "firebase/auth/react-native": [
         "./node_modules/@firebase/auth/dist/index.rn.d.ts"
       ]
     },
-    "types": ["node", "@types/estree"]
+    "types": [
+      "node",
+      "@types/estree"
+    ]
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts",
     "nativewind-env.d.ts"
   ]
 }
