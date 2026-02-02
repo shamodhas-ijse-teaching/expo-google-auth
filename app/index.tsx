@@ -4,6 +4,7 @@ import { useAuth } from "@/hooks/useAuth"
 
 export default function Index() {
   const { user, loading } = useAuth()
+  console.log(user)
 
   if (loading) {
     return (
