@@ -13,7 +13,7 @@ This project demonstrates <strong>Google Authentication</strong> in an
 <h2>📺 Video Guide</h2>
 
 <p>
-  Watch the complete step-by-step video guide here (Unlisted/Secret):
+  Watch the complete step-by-step video guide here:
 </p>
 
 <ul>
