@@ -6,23 +6,7 @@ This project demonstrates <strong>Google Authentication</strong> in an
 </p>
 <hr />
 
-<h2>📺 Video Guide</h2>
 
-<p>
-  Watch the complete step-by-step video guide here:
-</p>
-
-<ul>
-  <li>
-    <a
-      href="https://drive.google.com/drive/folders/14kzsiaNbEr5290BoMeu_2rOXkbBUY57e"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Expo Firebase Google Authentication – Video (Google Drive)
-    </a>
-  </li>
-</ul>
 <hr />
 
 <h2>Phase 1: Firebase Setup</h2>
