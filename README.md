@@ -19,7 +19,7 @@ This project demonstrates <strong>Google Authentication</strong> in an
       target="_blank"
       rel="noopener noreferrer"
     >
-      Expo Firebase Google Authentication – Video Tutorials (Google Drive)
+      Expo Firebase Google Authentication – Video (Google Drive)
     </a>
   </li>
 </ul>
