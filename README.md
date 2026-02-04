@@ -5,7 +5,21 @@ This project demonstrates <strong>Google Authentication</strong> in an
 <strong>Expo React Native app</strong> using <strong>Firebase</strong>.
 </p>
 <hr />
+<img src="https://github.com/shamodhas-ijse-teaching/file-hosting/raw/0a0d6b74714be98ad7426af9d3f7e9f6f8f78e33/images/expo-google-auth%20.png" alt="Expo Google Auth" width="70%" />
 
+<h2>📺 Video Guide</h2>
+
+<p>
+  Watch the complete step-by-step video guide here (Unlisted/Secret):
+</p>
+
+<ul>
+  <li>
+    <a href="https://www.youtube.com/watch?v=VhP6nlMkYz8" target="_blank">
+      <strong>▶️ Watch Full Guide: Expo Firebase Google Authentication</strong>
+    </a>
+  </li>
+</ul>
 
 <hr />
 
